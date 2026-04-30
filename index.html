@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>VELOCE · next forge</title>
+
+    <!-- Fonts: elegant sans + mono pairing -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind via CDN + custom layer -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+              mono: ["JetBrains Mono", "Geist Mono", "monospace"],
+            },
+            colors: {
+              paper: "#F9F9F8",
+              ink: "#1A1A1A",
+              soft: "#8C8C8A",
+              line: "#E2E2E0",
+              surface: "#F1F1EF",
+              dark: "#1E1E1E",
+            },
+            letterSpacing: {
+              widecmd: "0.03em",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #f9f9f8;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* custom smooth focus rings */
+      .field-input {
+        background-color: #f1f1ef;
+        border: 1px solid #e2e2e0;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        width: 100%;
+        font-size: 0.875rem;
+        color: #1a1a1a;
+        transition: all 0.2s ease;
+        outline: none;
+      }
+      .field-input:focus {
+        border-color: #1a1a1a;
+        background-color: #ffffff;
+        box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.05);
+      }
+
+      /* minimal toggle switch */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 38px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #e2e2e0;
+        transition: 0.25s ease;
+        border-radius: 20px;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.25s ease;
+        border-radius: 50%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+      input:checked + .slider {
+        background-color: #1a1a1a;
+      }
+      input:checked + .slider:before {
+        transform: translateX(18px);
+      }
+
+      /* elegant grid layout */
+      .divided-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border: 1px solid #e2e2e0;
+        border-radius: 1.25rem;
+        overflow: hidden;
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(2px);
+      }
+
+      .grid-cell {
+        padding: 2.25rem 2rem;
+        border-bottom: 1px solid #e2e2e0;
+        background-color: #f9f9f8;
+        transition: background-color 0.15s ease;
+      }
+
+      .grid-cell:nth-child(odd) {
+        border-right: 1px solid #e2e2e0;
+      }
+      /* remove bottom border from last row (cells 3 & 4) */
+      .grid-cell:nth-last-child(-n + 2) {
+        border-bottom: none;
+      }
+
+      @media (max-width: 640px) {
+        .divided-grid {
+          grid-template-columns: 1fr;
+          border-radius: 1rem;
+        }
+        .grid-cell:nth-child(odd) {
+          border-right: none;
+        }
+        .grid-cell:nth-last-child(-n + 2) {
+          border-bottom: 1px solid #e2e2e0;
+        }
+        .grid-cell:last-child {
+          border-bottom: none;
+        }
+      }
+
+      .command-bar {
+        background: #1e1e1e;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.03);
+      }
+
+      .option-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #8c8c8a;
+        letter-spacing: 0.08em;
+      }
+
+      .option-desc {
+        font-size: 0.7rem;
+        color: #8c8c8a;
+        line-height: 1.5;
+        margin-top: 0.2rem;
+      }
+
+      /* subtle hover on cells */
+      .grid-cell:hover {
+        background-color: #f5f5f3;
+      }
+
+      button:active {
+        transform: scale(0.97);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col items-center pb-36 md:pb-40">
+    <!-- Header: refined typography -->
+    <header class="w-full max-w-5xl pt-16 md:pt-20 pb-10 px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-ink mb-2">
+        Veloce<span class="text-soft font-normal">.</span>
+      </h1>
+      <p
+        class="text-soft font-medium text-xs md:text-sm uppercase tracking-[0.35em]"
+      >
+        next.js cli forge
+      </p>
+      <div class="mt-3 w-16 h-px bg-line mx-auto"></div>
+    </header>
+
+    <!-- Main configuration grid -->
+    <main class="w-full max-w-5xl px-4 md:px-6">
+      <div class="divided-grid shadow-sm">
+        <!-- 01 Identity -->
+        <div class="grid-cell">
+          <h2 class="option-label mb-7 uppercase flex items-center gap-2">
+            <span
+              class="w-5 h-5 rounded-full bg-ink text-white text-[10px] flex items-center justify-center font-bold"
+              >01</span
+            >
+            Identity
+          </h2>
+          <div class="space-y-6">
+            <div>
+              <label
+                class="block text-[0.65rem] font-bold mb-1.5 uppercase text-soft tracking-wider"
+                >Project name</label
+              >
+              <input
+                type="text"
+                id="projectName"
+                value="my-next-app"
+                class="field-input"
+                oninput="updateCommand()"
+                placeholder="e.g., stellar-dapp"
+              />
+              <p class="option-desc">
+                Directory and package name for your application.
+              </p>
+            </div>
+            <div>
+              <label
+                class="block text-[0.65rem] font-bold mb-1.5 uppercase text-soft tracking-wider"
+                >Package manager</label
+              >
+              <select id="pkg" class="field-input" onchange="updateCommand()">
+                <option value="npx">npm / npx</option>
+                <option value="pnpm create">pnpm</option>
+                <option value="yarn create">yarn</option>
+                <option value="bunx">bun</option>
+              </select>
+              <p class="option-desc">
+                Select your runtime and dependency manager.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 Core Stack -->
+        <div class="grid-cell">
+          <h2 class="option-label mb-7 uppercase flex items-center gap-2">
+            <span
+              class="w-5 h-5 rounded-full bg-ink text-white text-[10px] flex items-center justify-center font-bold"
+              >02</span
+            >
+            Core stack
+          </h2>
+          <div class="space-y-5">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-ink">TypeScript</p>
+                <p class="option-desc">Static typing for robust development.</p>
+              </div>
+              <label class="switch mt-0.5"
+                ><input
+                  type="checkbox"
+                  id="ts"
+                  checked
+                  onchange="updateCommand()" /><span class="slider"></span
+              ></label>
+            </div>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-ink">App Router</p>
+                <p class="option-desc">React Server Components & layouts.</p>
+              </div>
+              <label class="switch mt-0.5"
+                ><input
+                  type="checkbox"
+                  id="appRouter"
+                  checked
+                  onchange="updateCommand()" /><span class="slider"></span
+              ></label>
+            </div>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-ink">Tailwind CSS</p>
+                <p class="option-desc">Utility-first styling framework.</p>
+              </div>
+              <label class="switch mt-0.5"
+                ><input
+                  type="checkbox"
+                  id="tailwind"
+                  checked
+                  onchange="updateCommand()" /><span class="slider"></span
+              ></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 Performance -->
+        <div class="grid-cell">
+          <h2 class="option-label mb-7 uppercase flex items-center gap-2">
+            <span
+              class="w-5 h-5 rounded-full bg-ink text-white text-[10px] flex items-center justify-center font-bold"
+              >03</span
+            >
+            Performance
+          </h2>
+          <div class="space-y-5">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-ink">Turbopack</p>
+                <p class="option-desc">Rust-based incremental bundler.</p>
+              </div>
+              <label class="switch mt-0.5"
+                ><input
+                  type="checkbox"
+                  id="turbo"
+                  onchange="updateCommand()" /><span class="slider"></span
+              ></label>
+            </div>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-ink">React Compiler</p>
+                <p class="option-desc">Automatic memoization (experimental).</p>
+              </div>
+              <label class="switch mt-0.5"
+                ><input
+                  type="checkbox"
+                  id="compiler"
+                  onchange="updateCommand()" /><span class="slider"></span
+              ></label>
+            </div>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-ink">Clean Canvas</p>
+                <p class="option-desc">Remove default boilerplate pages.</p>
+              </div>
+              <label class="switch mt-0.5"
+                ><input
+                  type="checkbox"
+                  id="empty"
+                  onchange="updateCommand()" /><span class="slider"></span
+              ></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 Configuration -->
+        <div class="grid-cell">
+          <h2 class="option-label mb-7 uppercase flex items-center gap-2">
+            <span
+              class="w-5 h-5 rounded-full bg-ink text-white text-[10px] flex items-center justify-center font-bold"
+              >04</span
+            >
+            Config
+          </h2>
+          <div class="space-y-5">
+            <div>
+              <label
+                class="block text-[0.65rem] font-bold mb-1.5 uppercase text-soft tracking-wider"
+                >Import alias</label
+              >
+              <input
+                type="text"
+                id="alias"
+                value="@/*"
+                class="field-input"
+                oninput="updateCommand()"
+                placeholder="@/*"
+              />
+              <p class="option-desc">
+                Shortcut for clean imports (e.g., @/components).
+              </p>
+            </div>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-ink">Lazy Install</p>
+                <p class="option-desc">Skip automatic dependency install.</p>
+              </div>
+              <label class="switch mt-0.5"
+                ><input
+                  type="checkbox"
+                  id="skipInstall"
+                  onchange="updateCommand()" /><span class="slider"></span
+              ></label>
+            </div>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-ink">Source Directory</p>
+                <p class="option-desc">
+                  Place code inside
+                  <code class="bg-line/30 px-1 rounded text-xs">src/</code>
+                  folder.
+                </p>
+              </div>
+              <label class="switch mt-0.5"
+                ><input
+                  type="checkbox"
+                  id="srcDir"
+                  onchange="updateCommand()" /><span class="slider"></span
+              ></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Command bar (fixed bottom) -->
+    <footer
+      class="command-bar fixed bottom-0 w-full z-50 border-t border-white/5 p-5"
+    >
+      <p
+        class="text-[0.6rem] uppercase tracking-[0.25em] text-gray-400 font-semibold mb-2"
+      >
+        terminal command
+      </p>
+      <div
+        class="max-w-5xl mx-auto py-4 flex flex-col md:flex-row justify-between items-center gap-4"
+      >
+        <div class="w-full">
+          <div
+            class="bg-white/5 p-3 rounded-lg border border-white/10 backdrop-blur-sm"
+          >
+            <code
+              id="output"
+              class="font-mono text-xs md:text-sm text-gray-200 break-all"
+            ></code>
+          </div>
+        </div>
+        <button
+          onclick="copyCmd()"
+          id="copyBtn"
+          class="bg-[#F9F9F8] text-[#1A1A1A] px-7 py-3 rounded-lg font-bold text-xs tracking-widest hover:brightness-95 transition-all duration-200 uppercase whitespace-nowrap flex items-center gap-2 shadow-sm"
+        >
+          <span class="hidden md:inline">📋</span> Copy command
+        </button>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        // ----- DOM references -----
+        const projectNameInput = document.getElementById("projectName");
+        const pkgSelect = document.getElementById("pkg");
+        const tsCheck = document.getElementById("ts");
+        const tailwindCheck = document.getElementById("tailwind");
+        const appRouterCheck = document.getElementById("appRouter");
+        const emptyCheck = document.getElementById("empty");
+        const turboCheck = document.getElementById("turbo");
+        const compilerCheck = document.getElementById("compiler");
+        const skipInstallCheck = document.getElementById("skipInstall");
+        const srcDirCheck = document.getElementById("srcDir");
+        const aliasInput = document.getElementById("alias");
+        const outputCode = document.getElementById("output");
+        const copyBtn = document.getElementById("copyBtn");
+
+        // ----- Build command string -----
+        function updateCommand() {
+          // sanitize project name (no spaces, fallback)
+          let rawName = projectNameInput.value.trim();
+          if (rawName === "") rawName = "my-app";
+          const name = rawName.replace(/\s+/g, "-").toLowerCase();
+
+          const pkg = pkgSelect.value; // e.g., "npx" or "pnpm create"
+          const tsFlag = tsCheck.checked ? "--ts" : "--js";
+          const tailwindFlag = tailwindCheck.checked
+            ? "--tailwind"
+            : "--no-tailwind";
+          const routerFlag = appRouterCheck.checked ? "--app" : "--pages";
+          const aliasValue = aliasInput.value.trim() || "@/*";
+          const aliasFlag = `--import-alias "${aliasValue}"`;
+
+          // optional flags
+          const emptyFlag = emptyCheck.checked ? "--empty" : "";
+          const turboFlag = turboCheck.checked ? "--turbo" : "";
+          const compilerFlag = compilerCheck.checked ? "--react-compiler" : "";
+          const skipInstallFlag = skipInstallCheck.checked
+            ? "--skip-install"
+            : "";
+          const srcDirFlag = srcDirCheck.checked ? "--src-dir" : "";
+
+          // assemble parts in logical order
+          let parts = [
+            pkg,
+            "create-next-app@latest",
+            name,
+            tsFlag,
+            tailwindFlag,
+            routerFlag,
+            aliasFlag,
+          ];
+
+          // add optional flags if they exist (non-empty strings)
+          if (emptyFlag) parts.push(emptyFlag);
+          if (turboFlag) parts.push(turboFlag);
+          if (compilerFlag) parts.push(compilerFlag);
+          if (skipInstallFlag) parts.push(skipInstallFlag);
+          if (srcDirFlag) parts.push(srcDirFlag);
+
+          // always add --yes to skip prompts (non-interactive vibe)
+          parts.push("--yes");
+
+          // join with spaces
+          outputCode.textContent = parts.join(" ");
+        }
+
+        // ----- Copy to clipboard with visual feedback -----
+        window.copyCmd = function () {
+          const textToCopy = outputCode.textContent;
+          if (!textToCopy) return;
+
+          navigator.clipboard
+            .writeText(textToCopy)
+            .then(() => {
+              const originalText = copyBtn.innerText;
+              copyBtn.innerText = "✓ Copied";
+              copyBtn.classList.add("bg-green-100", "text-green-800");
+
+              setTimeout(() => {
+                copyBtn.innerText = originalText;
+                copyBtn.classList.remove("bg-green-100", "text-green-800");
+              }, 1800);
+            })
+            .catch(() => {
+              // fallback feedback
+              copyBtn.innerText = "⚠️ Try again";
+              setTimeout(() => {
+                copyBtn.innerText = "Copy command";
+              }, 1500);
+            });
+        };
+
+        // Attach event listeners for any change
+        const inputs = [
+          projectNameInput,
+          pkgSelect,
+          tsCheck,
+          tailwindCheck,
+          appRouterCheck,
+          emptyCheck,
+          turboCheck,
+          compilerCheck,
+          skipInstallCheck,
+          srcDirCheck,
+          aliasInput,
+        ];
+
+        inputs.forEach((el) => {
+          if (
+            el.tagName === "SELECT" ||
+            el.type === "checkbox" ||
+            el.type === "text"
+          ) {
+            el.addEventListener("change", updateCommand);
+            el.addEventListener("input", updateCommand);
+          }
+        });
+
+        // initial command generation
+        updateCommand();
+
+        // Ensure copy button also accessible via global scope (already window.copyCmd)
+      })();
+    </script>
+  </body>
+</html>
