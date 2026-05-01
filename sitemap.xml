@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
+  <!-- Homepage -->
   <url>
-    <loc>https://shreynagda.github.io/veloce/</loc>
+    <loc>https://veloce-next.netlify.app/</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://shreynagda.github.io/veloce/og-image.png</image:loc>
-      <image:title>Veloce Next.js Configurator</image:title>
-      <image:caption>Configure and generate Next.js project commands</image:caption>
+      <image:loc>https://veloce-next.netlify.app/og-image.png</image:loc>
+      <image:title>Veloce - Next.js Configuration Tool</image:title>
+      <image:caption>Interactive educational tool for learning Next.js project configuration</image:caption>
     </image:image>
   </url>
 
+  <!-- About section (anchor link) -->
   <url>
-    <loc>https://shreynagda.github.io/veloce/#features</loc>
+    <loc>https://veloce-next.netlify.app/#main-content</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://shreynagda.github.io/veloce/#about</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
   </url>
 </urlset>

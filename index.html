@@ -7,107 +7,72 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>
-      Veloce — Next.js Project Configurator | Fast-Track Your Development
-    </title>
+    <title>Veloce — Next.js Project Setup Guide & Visual Configurator</title>
     <meta
       name="description"
-      content="Veloce is a modern, intuitive Next.js project configurator. Generate optimized create-next-app commands with TypeScript, Tailwind CSS, App Router, and more. Fast-track your web development workflow."
+      content="Interactive educational tool to learn Next.js project configuration. Visually explore TypeScript, Tailwind CSS, App Router, and other setup options for your next web project."
     />
     <meta
       name="keywords"
-      content="Next.js, React, project configurator, create-next-app, TypeScript, Tailwind CSS, web development, CLI tool, JavaScript, React framework"
+      content="Next.js configuration, React setup, TypeScript, Tailwind CSS, App Router, web development tutorial, project setup guide"
     />
     <meta name="author" content="Veloce" />
     <meta
       name="robots"
-      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+      content="index, follow, max-snippet:-1, max-image-preview:large"
     />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="bingbot" content="index, follow" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://shreynagda.github.io/veloce/" />
+    <link rel="canonical" href="https://veloce-next.netlify.app/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://shreynagda.github.io/veloce/" />
-    <meta property="og:title" content="Veloce — Next.js Project Configurator" />
+    <meta property="og:url" content="https://veloce-next.netlify.app/" />
+    <meta property="og:title" content="Veloce — Next.js Project Setup Guide" />
     <meta
       property="og:description"
-      content="Configure and generate optimized Next.js project commands. TypeScript, Tailwind CSS, App Router, and more. Start building faster."
+      content="Learn Next.js configuration with our interactive visual tool. Explore project options and best practices for modern web development."
     />
     <meta
       property="og:image"
-      content="https://shreynagda.github.io/veloce/og-image.png"
+      content="https://veloce-next.netlify.app/og-image.png"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Veloce Next.js Configurator Interface"
+      content="Veloce Next.js Configuration Tool Interface"
     />
     <meta property="og:site_name" content="Veloce" />
-    <meta property="og:locale" content="en_IN" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://shreynagda.github.io/veloce/" />
-    <meta
-      name="twitter:title"
-      content="Veloce — Next.js Project Configurator"
-    />
+    <meta name="twitter:url" content="https://veloce-next.netlify.app/" />
+    <meta name="twitter:title" content="Veloce — Next.js Project Setup Guide" />
     <meta
       name="twitter:description"
-      content="Configure and generate optimized Next.js project commands. Fast-track your development workflow."
+      content="Learn Next.js configuration with our interactive visual tool. Explore project options and best practices."
     />
     <meta
       name="twitter:image"
-      content="https://shreynagda.github.io/veloce/og-image.png"
+      content="https://veloce-next.netlify.app/og-image.png"
     />
     <meta
       name="twitter:image:alt"
-      content="Veloce Next.js Configurator Interface"
+      content="Veloce Next.js Configuration Tool Interface"
     />
-    <meta name="twitter:creator" content="@shrey_nagda" />
 
-    <!-- Favicon and App Icons -->
-    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon/favicon-16x16.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="/favicon/android-chrome-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="512x512"
-      href="/favicon/android-chrome-512x512.png"
-    />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#1A1A1A" />
     <meta name="msapplication-TileColor" content="#1A1A1A" />
-    <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -128,7 +93,7 @@
           extend: {
             fontFamily: {
               sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
-              mono: ["JetBrains Mono", "Geist Mono", "monospace"],
+              mono: ["JetBrains Mono", "monospace"],
             },
             colors: {
               paper: "#F9F9F8",
@@ -136,13 +101,14 @@
               soft: "#8C8C8A",
               line: "#E2E2E0",
               surface: "#F1F1EF",
+              accent: "#3B82F6",
+              success: "#10B981",
             },
           },
         },
       };
     </script>
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css" />
 
     <!-- Structured Data -->
@@ -150,15 +116,15 @@
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Veloce",
-        "url": "https://shreynagda.github.io/veloce",
-        "description": "Next.js project configurator and command generator",
-        "applicationCategory": "DeveloperApplication",
+        "name": "Veloce - Next.js Configurator",
+        "url": "https://veloce-next.netlify.app",
+        "description": "Educational tool for learning and visualizing Next.js project configuration options",
+        "applicationCategory": "EducationalApplication",
         "operatingSystem": "All",
         "author": {
           "@type": "Organization",
           "name": "Veloce",
-          "url": "https://shreynagda.github.io/veloce"
+          "url": "https://veloce-next.netlify.app"
         },
         "offers": {
           "@type": "Offer",
@@ -168,71 +134,88 @@
       }
     </script>
   </head>
-  <body class="min-h-screen flex flex-col items-center pb-40 md:pb-44">
+  <body class="min-h-screen flex flex-col items-center">
     <!-- Skip to main content -->
     <a href="#main-content" class="skip-link">
       <i class="ph ph-skip-forward"></i> Skip to main content
     </a>
 
     <!-- Header -->
-    <header
-      class="w-full max-w-5xl pt-16 md:pt-20 pb-8 px-6 text-center"
-      role="banner"
-    >
-      <div class="flex items-center justify-center gap-3 mb-4">
-        <div
-          class="w-12 h-12 bg-ink rounded-xl flex items-center justify-center"
+    <header class="w-full max-w-5xl pt-16 md:pt-20 pb-8 px-6" role="banner">
+      <div class="text-center mb-8">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div
+            class="w-14 h-14 bg-ink rounded-2xl flex items-center justify-center shadow-lg"
+          >
+            <i class="ph ph-lightning text-2xl text-white"></i>
+          </div>
+        </div>
+        <h1
+          class="text-4xl md:text-5xl font-light tracking-tight text-ink mb-3"
         >
-          <i class="ph ph-lightning text-2xl text-white"></i>
+          Veloce<span class="text-soft font-normal">.</span>
+        </h1>
+        <p
+          class="text-soft font-medium text-xs md:text-sm uppercase tracking-[0.35em] mb-2"
+        >
+          Learn Next.js Configuration
+        </p>
+        <p class="text-xs text-soft max-w-2xl mx-auto leading-relaxed">
+          An educational tool to understand Next.js project setup options.
+          Configure your stack visually and learn what each option does.
+        </p>
+      </div>
+
+      <!-- Educational Notice -->
+      <div class="max-w-3xl mx-auto">
+        <div
+          class="bg-blue-50 border border-blue-200 rounded-xl p-4 flex items-start gap-3"
+        >
+          <i class="ph ph-info text-blue-600 text-xl mt-0.5 flex-shrink-0"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-blue-900 mb-1">
+              📚 How to Use This Educational Tool
+            </h3>
+            <p class="text-xs text-blue-700 leading-relaxed">
+              This is a
+              <strong>configuration visualizer and learning tool</strong> for
+              Next.js projects. Toggle options to see how they affect your
+              project setup. The configuration summary helps you understand what
+              each option means. <br /><br />
+              <strong>For actual project creation:</strong> Always refer to the
+              <a
+                href="https://nextjs.org/docs/getting-started/installation"
+                class="underline hover:text-blue-900 font-medium"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                official Next.js documentation
+              </a>
+              for the most up-to-date installation instructions.
+            </p>
+          </div>
         </div>
       </div>
-      <h1 class="text-4xl md:text-5xl font-light tracking-tight text-ink mb-2">
-        Veloce<span class="text-soft font-normal">.</span>
-      </h1>
-      <p
-        class="text-soft font-medium text-xs md:text-sm uppercase tracking-[0.35em]"
-      >
-        Next.js CLI Forge
-      </p>
-      <p class="text-xs text-soft mt-2 max-w-md mx-auto">
-        Configure your perfect Next.js stack. Generate optimized commands for
-        your next project.
-      </p>
     </header>
 
-    <!-- Main configuration grid -->
+    <!-- Main Content -->
     <main
       id="main-content"
-      class="w-full max-w-5xl px-4 md:px-6 mb-10 md:mb-0"
+      class="w-full max-w-5xl px-4 md:px-6 flex-1"
       role="main"
     >
-      <!-- Safety notice -->
-      <div class="mb-4 safety-badge" role="alert">
-        <i class="ph ph-info text-base"></i>
-        <span
-          >This tool generates a
-          <strong>Next.js project creation command</strong>. Always review
-          commands before running them in your terminal.</span
-        >
-      </div>
-
-      <div class="divided-grid shadow-sm">
+      <!-- Configuration Grid -->
+      <div class="divided-grid shadow-sm mb-12">
         <!-- 01 Identity -->
         <div class="grid-cell">
-          <h2 class="option-label mb-7 uppercase flex items-center gap-2">
-            <span
-              class="w-5 h-5 rounded-full bg-ink text-white text-[10px] flex items-center justify-center font-bold"
-              >01</span
-            >
+          <h2 class="option-label mb-6 uppercase flex items-center gap-2">
+            <span class="step-number">01</span>
             <i class="ph ph-fingerprint text-base"></i>
             Project Identity
           </h2>
           <div class="space-y-6">
             <div>
-              <label
-                for="projectName"
-                class="block text-[0.65rem] font-bold mb-1.5 uppercase text-soft tracking-wider"
-              >
+              <label for="projectName" class="field-label">
                 <i class="ph ph-folder-notch"></i> Project Name
               </label>
               <input
@@ -241,245 +224,728 @@
                 value="my-next-app"
                 class="field-input"
                 placeholder="e.g., my-portfolio"
+                aria-describedby="projectNameDesc"
               />
-              <p class="option-desc">
-                Directory name for your new application.
+              <p id="projectNameDesc" class="option-desc">
+                <i class="ph ph-info text-xs"></i>
+                Choose a name for your project directory. Use lowercase letters
+                and hyphens for best compatibility.
               </p>
             </div>
             <div>
-              <label
-                for="pkg"
-                class="block text-[0.65rem] font-bold mb-1.5 uppercase text-soft tracking-wider"
-              >
+              <label for="pkg" class="field-label">
                 <i class="ph ph-package"></i> Package Manager
               </label>
-              <select id="pkg" class="field-input">
+              <select id="pkg" class="field-input" aria-describedby="pkgDesc">
                 <option value="npm">npm (Node Package Manager)</option>
-                <option value="pnpm">pnpm (Fast, disk-efficient)</option>
-                <option value="yarn">yarn (Classic)</option>
-                <option value="bun">bun (JavaScript runtime)</option>
+                <option value="pnpm">pnpm (Performant npm)</option>
+                <option value="yarn">yarn (Package Manager)</option>
+                <option value="bun">bun (JavaScript Runtime)</option>
               </select>
-              <p class="option-desc">Choose your preferred package manager.</p>
+              <p id="pkgDesc" class="option-desc">
+                <i class="ph ph-info text-xs"></i>
+                Select your preferred tool for managing project dependencies and
+                running scripts.
+              </p>
             </div>
           </div>
         </div>
 
         <!-- 02 Core Stack -->
         <div class="grid-cell">
-          <h2 class="option-label mb-7 uppercase flex items-center gap-2">
-            <span
-              class="w-5 h-5 rounded-full bg-ink text-white text-[10px] flex items-center justify-center font-bold"
-              >02</span
-            >
+          <h2 class="option-label mb-6 uppercase flex items-center gap-2">
+            <span class="step-number">02</span>
             <i class="ph ph-stack text-base"></i>
             Core Stack
           </h2>
           <div class="space-y-5">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p
-                  class="text-sm font-semibold text-ink flex items-center gap-2"
-                >
-                  <i class="ph ph-code text-base"></i> TypeScript
-                </p>
-                <p class="option-desc">Static typing for safer code.</p>
+            <!-- TypeScript -->
+            <div class="config-option">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="config-title">
+                    <i class="ph ph-code text-base"></i> TypeScript
+                  </p>
+                  <p class="option-desc">
+                    Adds static type checking to catch errors early in
+                    development.
+                  </p>
+                  <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="toggleInfo('ts-info')"
+                    aria-expanded="false"
+                  >
+                    <i class="ph ph-book-open text-xs"></i> Learn more
+                  </button>
+                  <div
+                    id="ts-info"
+                    class="info-box hidden"
+                    role="region"
+                    aria-label="TypeScript information"
+                  >
+                    <p>
+                      TypeScript extends JavaScript by adding types. It helps
+                      catch bugs before they reach production, provides better
+                      IDE support with autocomplete, and makes code more
+                      maintainable.
+                    </p>
+                    <a
+                      href="https://www.typescriptlang.org/"
+                      target="_blank"
+                      rel="noopener"
+                      class="external-link"
+                    >
+                      <i class="ph ph-arrow-square-out"></i> TypeScript
+                      Documentation
+                    </a>
+                  </div>
+                </div>
+                <label class="switch mt-0.5">
+                  <input
+                    type="checkbox"
+                    id="ts"
+                    checked
+                    aria-label="Enable TypeScript"
+                  />
+                  <span class="slider"></span>
+                </label>
               </div>
-              <label class="switch mt-0.5">
-                <input type="checkbox" id="ts" checked />
-                <span class="slider"></span>
-              </label>
             </div>
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p
-                  class="text-sm font-semibold text-ink flex items-center gap-2"
-                >
-                  <i class="ph ph-graph text-base"></i> App Router
-                </p>
-                <p class="option-desc">React Server Components & layouts.</p>
+
+            <!-- App Router -->
+            <div class="config-option">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="config-title">
+                    <i class="ph ph-graph text-base"></i> App Router
+                  </p>
+                  <p class="option-desc">
+                    Uses React Server Components and the new file-based routing
+                    system.
+                  </p>
+                  <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="toggleInfo('router-info')"
+                    aria-expanded="false"
+                  >
+                    <i class="ph ph-book-open text-xs"></i> Learn more
+                  </button>
+                  <div
+                    id="router-info"
+                    class="info-box hidden"
+                    role="region"
+                    aria-label="App Router information"
+                  >
+                    <p>
+                      The App Router is Next.js's modern routing system built on
+                      React Server Components. It supports layouts, loading
+                      states, error handling, and server-side data fetching out
+                      of the box.
+                    </p>
+                    <a
+                      href="https://nextjs.org/docs/app"
+                      target="_blank"
+                      rel="noopener"
+                      class="external-link"
+                    >
+                      <i class="ph ph-arrow-square-out"></i> App Router
+                      Documentation
+                    </a>
+                  </div>
+                </div>
+                <label class="switch mt-0.5">
+                  <input
+                    type="checkbox"
+                    id="appRouter"
+                    checked
+                    aria-label="Enable App Router"
+                  />
+                  <span class="slider"></span>
+                </label>
               </div>
-              <label class="switch mt-0.5">
-                <input type="checkbox" id="appRouter" checked />
-                <span class="slider"></span>
-              </label>
             </div>
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p
-                  class="text-sm font-semibold text-ink flex items-center gap-2"
-                >
-                  <i class="ph ph-paint-brush text-base"></i> Tailwind CSS
-                </p>
-                <p class="option-desc">Utility-first CSS framework.</p>
+
+            <!-- Tailwind CSS -->
+            <div class="config-option">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="config-title">
+                    <i class="ph ph-paint-brush text-base"></i> Tailwind CSS
+                  </p>
+                  <p class="option-desc">
+                    Utility-first CSS framework for rapid, consistent styling.
+                  </p>
+                  <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="toggleInfo('tailwind-info')"
+                    aria-expanded="false"
+                  >
+                    <i class="ph ph-book-open text-xs"></i> Learn more
+                  </button>
+                  <div
+                    id="tailwind-info"
+                    class="info-box hidden"
+                    role="region"
+                    aria-label="Tailwind CSS information"
+                  >
+                    <p>
+                      Tailwind CSS lets you style directly in your HTML using
+                      utility classes. It's highly customizable, promotes
+                      consistent design systems, and eliminates the need to
+                      write custom CSS.
+                    </p>
+                    <a
+                      href="https://tailwindcss.com/"
+                      target="_blank"
+                      rel="noopener"
+                      class="external-link"
+                    >
+                      <i class="ph ph-arrow-square-out"></i> Tailwind CSS
+                      Documentation
+                    </a>
+                  </div>
+                </div>
+                <label class="switch mt-0.5">
+                  <input
+                    type="checkbox"
+                    id="tailwind"
+                    checked
+                    aria-label="Enable Tailwind CSS"
+                  />
+                  <span class="slider"></span>
+                </label>
               </div>
-              <label class="switch mt-0.5">
-                <input type="checkbox" id="tailwind" checked />
-                <span class="slider"></span>
-              </label>
             </div>
           </div>
         </div>
 
         <!-- 03 Performance -->
         <div class="grid-cell">
-          <h2 class="option-label mb-7 uppercase flex items-center gap-2">
-            <span
-              class="w-5 h-5 rounded-full bg-ink text-white text-[10px] flex items-center justify-center font-bold"
-              >03</span
-            >
+          <h2 class="option-label mb-6 uppercase flex items-center gap-2">
+            <span class="step-number">03</span>
             <i class="ph ph-lightning text-base"></i>
-            Performance
+            Performance Options
           </h2>
           <div class="space-y-5">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p
-                  class="text-sm font-semibold text-ink flex items-center gap-2"
-                >
-                  <i class="ph ph-rocket text-base"></i> Turbopack
-                </p>
-                <p class="option-desc">Rust-based incremental bundler.</p>
+            <!-- Turbopack -->
+            <div class="config-option">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="config-title">
+                    <i class="ph ph-rocket text-base"></i> Turbopack
+                  </p>
+                  <p class="option-desc">
+                    Rust-powered incremental bundler for faster development
+                    builds.
+                  </p>
+                  <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="toggleInfo('turbo-info')"
+                    aria-expanded="false"
+                  >
+                    <i class="ph ph-book-open text-xs"></i> Learn more
+                  </button>
+                  <div
+                    id="turbo-info"
+                    class="info-box hidden"
+                    role="region"
+                    aria-label="Turbopack information"
+                  >
+                    <p>
+                      Turbopack is an incremental bundler written in Rust,
+                      optimized for JavaScript and TypeScript. It provides
+                      significantly faster refresh times during development
+                      compared to traditional bundlers.
+                    </p>
+                    <a
+                      href="https://turbo.build/pack"
+                      target="_blank"
+                      rel="noopener"
+                      class="external-link"
+                    >
+                      <i class="ph ph-arrow-square-out"></i> Turbopack
+                      Documentation
+                    </a>
+                  </div>
+                </div>
+                <label class="switch mt-0.5">
+                  <input
+                    type="checkbox"
+                    id="turbo"
+                    aria-label="Enable Turbopack"
+                  />
+                  <span class="slider"></span>
+                </label>
               </div>
-              <label class="switch mt-0.5">
-                <input type="checkbox" id="turbo" />
-                <span class="slider"></span>
-              </label>
             </div>
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p
-                  class="text-sm font-semibold text-ink flex items-center gap-2"
-                >
-                  <i class="ph ph-atom text-base"></i> React Compiler
-                </p>
-                <p class="option-desc">Automatic memoization (experimental).</p>
+
+            <!-- React Compiler -->
+            <div class="config-option">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="config-title">
+                    <i class="ph ph-atom text-base"></i> React Compiler
+                  </p>
+                  <p class="option-desc">
+                    Experimental automatic memoization for better UI
+                    performance.
+                  </p>
+                  <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="toggleInfo('compiler-info')"
+                    aria-expanded="false"
+                  >
+                    <i class="ph ph-book-open text-xs"></i> Learn more
+                  </button>
+                  <div
+                    id="compiler-info"
+                    class="info-box hidden"
+                    role="region"
+                    aria-label="React Compiler information"
+                  >
+                    <p>
+                      The React Compiler automatically applies memoization where
+                      needed, reducing unnecessary re-renders without manual
+                      optimization. This is an experimental feature.
+                    </p>
+                    <a
+                      href="https://react.dev/learn/react-compiler"
+                      target="_blank"
+                      rel="noopener"
+                      class="external-link"
+                    >
+                      <i class="ph ph-arrow-square-out"></i> React Compiler
+                      Documentation
+                    </a>
+                  </div>
+                </div>
+                <label class="switch mt-0.5">
+                  <input
+                    type="checkbox"
+                    id="compiler"
+                    aria-label="Enable React Compiler"
+                  />
+                  <span class="slider"></span>
+                </label>
               </div>
-              <label class="switch mt-0.5">
-                <input type="checkbox" id="compiler" />
-                <span class="slider"></span>
-              </label>
             </div>
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p
-                  class="text-sm font-semibold text-ink flex items-center gap-2"
-                >
-                  <i class="ph ph-broom text-base"></i> Clean Template
-                </p>
-                <p class="option-desc">Start with minimal boilerplate.</p>
+
+            <!-- Clean Template -->
+            <div class="config-option">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="config-title">
+                    <i class="ph ph-broom text-base"></i> Minimal Template
+                  </p>
+                  <p class="option-desc">
+                    Start with a clean slate without demo pages and components.
+                  </p>
+                  <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="toggleInfo('empty-info')"
+                    aria-expanded="false"
+                  >
+                    <i class="ph ph-book-open text-xs"></i> Learn more
+                  </button>
+                  <div
+                    id="empty-info"
+                    class="info-box hidden"
+                    role="region"
+                    aria-label="Minimal template information"
+                  >
+                    <p>
+                      Starting with an empty template removes all example pages
+                      and components, giving you a completely blank project to
+                      build from scratch according to your needs.
+                    </p>
+                  </div>
+                </div>
+                <label class="switch mt-0.5">
+                  <input
+                    type="checkbox"
+                    id="empty"
+                    aria-label="Enable minimal template"
+                  />
+                  <span class="slider"></span>
+                </label>
               </div>
-              <label class="switch mt-0.5">
-                <input type="checkbox" id="empty" />
-                <span class="slider"></span>
-              </label>
             </div>
           </div>
         </div>
 
         <!-- 04 Configuration -->
         <div class="grid-cell">
-          <h2 class="option-label mb-7 uppercase flex items-center gap-2">
-            <span
-              class="w-5 h-5 rounded-full bg-ink text-white text-[10px] flex items-center justify-center font-bold"
-              >04</span
-            >
+          <h2 class="option-label mb-6 uppercase flex items-center gap-2">
+            <span class="step-number">04</span>
             <i class="ph ph-gear text-base"></i>
-            Configuration
+            Project Settings
           </h2>
           <div class="space-y-5">
             <div>
-              <label
-                for="alias"
-                class="block text-[0.65rem] font-bold mb-1.5 uppercase text-soft tracking-wider"
-              >
-                <i class="ph ph-link"></i> Import Alias
+              <label for="alias" class="field-label">
+                <i class="ph ph-link"></i> Import Path Alias
               </label>
               <input
                 type="text"
                 id="alias"
                 value="@/*"
                 class="field-input"
-                placeholder="@/*"
+                aria-describedby="aliasDesc"
               />
-              <p class="option-desc">
-                Shortcut for imports (e.g., @/components).
+              <p id="aliasDesc" class="option-desc">
+                <i class="ph ph-info text-xs"></i>
+                Creates shortcuts for cleaner imports. Use
+                <code class="bg-surface px-1 rounded">@/components</code>
+                instead of
+                <code class="bg-surface px-1 rounded">../../components</code>.
               </p>
             </div>
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p
-                  class="text-sm font-semibold text-ink flex items-center gap-2"
-                >
-                  <i class="ph ph-download-simple text-base"></i> Skip Install
-                </p>
-                <p class="option-desc">Don't auto-install dependencies.</p>
+
+            <!-- Skip Install -->
+            <div class="config-option">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="config-title">
+                    <i class="ph ph-download-simple text-base"></i> Manual
+                    Dependency Install
+                  </p>
+                  <p class="option-desc">
+                    Choose when to install project dependencies.
+                  </p>
+                  <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="toggleInfo('install-info')"
+                    aria-expanded="false"
+                  >
+                    <i class="ph ph-book-open text-xs"></i> Learn more
+                  </button>
+                  <div
+                    id="install-info"
+                    class="info-box hidden"
+                    role="region"
+                    aria-label="Install information"
+                  >
+                    <p>
+                      By default, dependencies install automatically when
+                      creating a project. Enable this option to install manually
+                      later, which is useful for custom configurations or
+                      offline setups.
+                    </p>
+                  </div>
+                </div>
+                <label class="switch mt-0.5">
+                  <input
+                    type="checkbox"
+                    id="skipInstall"
+                    aria-label="Skip automatic install"
+                  />
+                  <span class="slider"></span>
+                </label>
               </div>
-              <label class="switch mt-0.5">
-                <input type="checkbox" id="skipInstall" />
-                <span class="slider"></span>
-              </label>
             </div>
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p
-                  class="text-sm font-semibold text-ink flex items-center gap-2"
-                >
-                  <i class="ph ph-folders text-base"></i> Source Directory
-                </p>
-                <p class="option-desc">
-                  Use
-                  <code class="bg-line/30 px-1 rounded text-xs">src/</code>
-                  folder structure.
-                </p>
+
+            <!-- Source Directory -->
+            <div class="config-option">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="config-title">
+                    <i class="ph ph-folders text-base"></i> Source Directory
+                    (src/)
+                  </p>
+                  <p class="option-desc">
+                    Organize application code in a dedicated directory.
+                  </p>
+                  <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="toggleInfo('src-info')"
+                    aria-expanded="false"
+                  >
+                    <i class="ph ph-book-open text-xs"></i> Learn more
+                  </button>
+                  <div
+                    id="src-info"
+                    class="info-box hidden"
+                    role="region"
+                    aria-label="Source directory information"
+                  >
+                    <p>
+                      Using a <code>src/</code> directory helps separate your
+                      application code from configuration files like
+                      <code>next.config.js</code> and <code>package.json</code>,
+                      keeping your project organized.
+                    </p>
+                  </div>
+                </div>
+                <label class="switch mt-0.5">
+                  <input
+                    type="checkbox"
+                    id="srcDir"
+                    aria-label="Use source directory"
+                  />
+                  <span class="slider"></span>
+                </label>
               </div>
-              <label class="switch mt-0.5">
-                <input type="checkbox" id="srcDir" />
-                <span class="slider"></span>
-              </label>
             </div>
           </div>
         </div>
       </div>
-    </main>
 
-    <!-- Command display bar (fixed bottom) -->
-    <footer
-      class="command-display fixed bottom-0 w-full z-50 border-t border-white/5"
-      role="contentinfo"
-    >
-      <div
-        class="max-w-5xl mx-auto px-4 md:px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4"
-      >
-        <div class="w-full">
-          <div class="flex items-center justify-between mb-2">
-            <p
-              class="text-[0.6rem] uppercase tracking-[0.25em] text-gray-400 font-semibold flex items-center gap-1"
+      <!-- Configuration Summary & Copy Section (Above Footer) -->
+      <section class="max-w-3xl mx-auto mb-8" aria-labelledby="summary-heading">
+        <h2
+          id="summary-heading"
+          class="text-2xl font-light text-ink mb-6 flex items-center gap-2"
+        >
+          <i class="ph ph-clipboard-text text-soft"></i>
+          Your Configuration Summary
+        </h2>
+
+        <div class="bg-white border border-line rounded-xl p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-semibold text-ink">
+              Selected Options Overview
+            </h3>
+            <button
+              onclick="copySummary()"
+              id="copySummaryBtn"
+              class="text-xs font-medium text-accent hover:text-blue-700 flex items-center gap-1 transition-colors"
             >
-              <i class="ph ph-terminal"></i> Generated Command
-            </p>
-            <span class="text-[0.6rem] text-gray-500 flex items-center gap-1">
-              <i class="ph ph-clipboard"></i> Copy & run in your terminal
-            </span>
+              <i class="ph ph-copy"></i> Copy Summary
+            </button>
           </div>
-          <div
-            class="bg-white/5 p-3 rounded-lg border border-white/10 backdrop-blur-sm"
-          >
-            <code
-              id="output"
-              class="font-mono text-xs md:text-sm text-gray-200 break-all"
-            ></code>
+
+          <div id="configSummary" class="space-y-3 text-sm">
+            <!-- Dynamically populated by JavaScript -->
+          </div>
+
+          <!-- Copy Configuration Button (Prominent) -->
+          <div class="mt-6 pt-4 border-t border-line">
+            <div
+              class="flex flex-col sm:flex-row items-center justify-between gap-4"
+            >
+              <div>
+                <h4 class="text-sm font-semibold text-ink mb-1">
+                  Ready to use this configuration?
+                </h4>
+                <p class="text-xs text-soft">
+                  Copy your configuration settings to use with the official
+                  Next.js setup guide.
+                </p>
+              </div>
+              <button
+                onclick="copyConfigForCLI()"
+                id="copyConfigBtn"
+                class="w-full sm:w-auto bg-ink text-white px-6 py-3 rounded-lg font-bold text-xs tracking-widest hover:bg-gray-800 transition-all duration-200 uppercase whitespace-nowrap flex items-center justify-center gap-2 shadow-lg"
+              >
+                <i class="ph ph-copy text-base"></i> Copy Configuration
+              </button>
+            </div>
+          </div>
+
+          <!-- Next Steps -->
+          <div class="mt-6 pt-4 border-t border-line">
+            <h4
+              class="text-xs font-semibold text-soft uppercase tracking-wider mb-3"
+            >
+              Next Steps for Your Project
+            </h4>
+            <ol class="space-y-2 text-sm text-soft">
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">1.</span>
+                Review the official Next.js
+                <a
+                  href="https://nextjs.org/docs/getting-started/installation"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-accent hover:underline font-medium"
+                >
+                  installation guide
+                </a>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">2.</span>
+                Use your configured options with the official Next.js project
+                creation tool
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">3.</span>
+                Start building your application with your chosen stack!
+              </li>
+            </ol>
           </div>
         </div>
-        <button
-          id="copyBtn"
-          class="bg-[#F9F9F8] text-[#1A1A1A] px-6 py-3 rounded-lg font-bold text-xs tracking-widest hover:brightness-95 transition-all duration-200 uppercase whitespace-nowrap flex items-center gap-2 shadow-sm"
+      </section>
+    </main>
+
+    <!-- Footer with Creator Info & Socials -->
+    <footer class="w-full bg-ink text-white mt-auto" role="contentinfo">
+      <div class="max-w-5xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <!-- About the Tool -->
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <div
+                class="w-8 h-8 bg-white rounded-lg flex items-center justify-center"
+              >
+                <i class="ph ph-lightning text-lg text-ink"></i>
+              </div>
+              <h3 class="text-lg font-semibold">
+                Veloce<span class="text-gray-400 font-normal">.</span>
+              </h3>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              An educational tool designed to help developers understand and
+              visualize Next.js project configuration options. Learn about
+              TypeScript, Tailwind CSS, App Router, and more through interactive
+              exploration.
+            </p>
+            <p class="text-gray-500 text-xs">
+              Built with ❤️ for the developer community. Always free and open
+              source.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4
+              class="text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300"
+            >
+              Resources
+            </h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="https://nextjs.org/docs"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-gray-400 hover:text-white text-sm transition-colors flex items-center gap-2"
+                >
+                  <i class="ph ph-book text-base"></i> Next.js Documentation
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://react.dev"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-gray-400 hover:text-white text-sm transition-colors flex items-center gap-2"
+                >
+                  <i class="ph ph-atom text-base"></i> React Documentation
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://tailwindcss.com"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-gray-400 hover:text-white text-sm transition-colors flex items-center gap-2"
+                >
+                  <i class="ph ph-paint-brush text-base"></i> Tailwind CSS
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-gray-400 hover:text-white text-sm transition-colors flex items-center gap-2"
+                >
+                  <i class="ph ph-code text-base"></i> TypeScript
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Creator & Socials -->
+          <div>
+            <h4
+              class="text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300"
+            >
+              Connect
+            </h4>
+
+            <!-- Creator Info -->
+            <div class="mb-6 p-4 bg-white/5 rounded-lg border border-white/10">
+              <p class="text-sm text-gray-300 mb-1">Created by</p>
+              <p class="text-white font-semibold">Shrey Nagda</p>
+              <p class="text-xs text-gray-400 mt-1">
+                Full Stack Developer & Content Creator
+              </p>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex flex-wrap gap-3">
+              <!-- GitHub -->
+              <a
+                href="https://github.com/ShreyNagda"
+                target="_blank"
+                rel="noopener"
+                class="social-link"
+                aria-label="GitHub Profile"
+              >
+                <i class="ph ph-github-logo text-xl"></i>
+              </a>
+
+              <!-- Twitter/X -->
+              <a
+                href="https://x.com/shrey_nagda"
+                target="_blank"
+                rel="noopener"
+                class="social-link"
+                aria-label="Twitter Profile"
+              >
+                <i class="ph ph-twitter-logo text-xl"></i>
+              </a>
+
+              <!-- LinkedIn -->
+              <a
+                href="https://linkedin.com/in/shrey_nagda"
+                target="_blank"
+                rel="noopener"
+                class="social-link"
+                aria-label="LinkedIn Profile"
+              >
+                <i class="ph ph-linkedin-logo text-xl"></i>
+              </a>
+
+              <!-- YouTube -->
+              <a
+                href="https://youtube.com/@shreynagda"
+                target="_blank"
+                rel="noopener"
+                class="social-link"
+                aria-label="YouTube Channel"
+              >
+                <i class="ph ph-youtube-logo text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div
+          class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <i class="ph ph-copy text-base"></i> Copy
-        </button>
+          <p class="text-xs text-gray-500">
+            &copy; 2025 Veloce. All rights reserved.
+            <span class="mx-2">·</span>
+            An independent educational resource.
+          </p>
+          <p class="text-xs text-gray-500">
+            Not affiliated with Vercel, Next.js, or any mentioned technologies.
+          </p>
+        </div>
       </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>
