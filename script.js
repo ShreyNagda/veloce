@@ -46,7 +46,7 @@
   }
 
   // ============================================
-  // Command Generation
+  // Utility Functions
   // ============================================
 
   /**
@@ -61,13 +61,29 @@
   }
 
   /**
-   * Get the import alias value with fallback
-   * @returns {string} Formatted alias value
+   * Toggle info box visibility
+   * @param {string} infoId - The ID of the info box to toggle
    */
-  function getAliasValue() {
-    const value = elements.alias.value.trim();
-    return value || "@/*";
+  function toggleInfo(infoId) {
+    const infoBox = document.getElementById(infoId);
+    const button = document.querySelector(
+      `[onclick="toggleInfo('${infoId}')"]`,
+    );
+
+    if (infoBox) {
+      const isHidden = infoBox.classList.contains("hidden");
+      infoBox.classList.toggle("hidden");
+
+      // Update aria-expanded attribute
+      if (button) {
+        button.setAttribute("aria-expanded", isHidden ? "true" : "false");
+      }
+    }
   }
+
+  // ============================================
+  // Command Generation
+  // ============================================
 
   /**
    * Build and update the command string based on current form values
@@ -76,13 +92,13 @@
     // Get sanitized values
     const projectName = sanitizeProjectName(elements.projectName.value);
     const createCommand = getCreateCommand(elements.pkg.value);
-    const aliasValue = getAliasValue();
+    const aliasValue = elements.alias.value.trim() || "@/*";
 
     // Build flags array
     const flags = [
       createCommand,
       projectName,
-      elements.ts.checked ? "--typescript" : "--javascript",
+      elements.ts.checked ? "--ts" : "--js",
       elements.tailwind.checked ? "--tailwind" : "--no-tailwind",
       elements.appRouter.checked ? "--app" : "--pages",
       `--import-alias "${aliasValue}"`,
@@ -91,7 +107,7 @@
     // Add optional flags based on checkbox states
     if (elements.empty.checked) flags.push("--empty");
     if (elements.turbo.checked) flags.push("--turbo");
-    if (elements.compiler.checked) flags.push("--experimental-react-compiler");
+    if (elements.compiler.checked) flags.push("--react-compiler");
     if (elements.skipInstall.checked) flags.push("--skip-install");
     if (elements.srcDir.checked) flags.push("--src-dir");
 
@@ -122,7 +138,6 @@
     navigator.clipboard
       .writeText(textToCopy)
       .then(() => {
-        // Success feedback
         showCopyFeedback(true);
       })
       .catch((error) => {
@@ -141,10 +156,12 @@
     textarea.value = text;
     textarea.style.position = "fixed";
     textarea.style.opacity = "0";
+    textarea.style.left = "-9999px";
     document.body.appendChild(textarea);
-    textarea.select();
 
     try {
+      textarea.select();
+      textarea.setSelectionRange(0, text.length);
       document.execCommand("copy");
       showCopyFeedback(true);
     } catch (err) {
@@ -233,32 +250,6 @@
   }
 
   // ============================================
-  // Analytics (Optional - Privacy Focused)
-  // ============================================
-
-  /**
-   * Track configuration usage (anonymous, no personal data)
-   */
-  function trackConfiguration() {
-    // Only track if in production and analytics enabled
-    if (window.location.hostname === "shreynagda.github.io" && window.gtag) {
-      const config = {
-        typescript: elements.ts.checked,
-        tailwind: elements.tailwind.checked,
-        appRouter: elements.appRouter.checked,
-        turbopack: elements.turbo.checked,
-        compiler: elements.compiler.checked,
-        packageManager: elements.pkg.value,
-      };
-
-      window.gtag("event", "configuration_generated", {
-        event_category: "engagement",
-        event_label: JSON.stringify(config),
-      });
-    }
-  }
-
-  // ============================================
   // Initialization
   // ============================================
 
@@ -268,9 +259,6 @@
   function init() {
     attachEventListeners();
     updateCommand(); // Generate initial command
-
-    // Track initial configuration
-    setTimeout(trackConfiguration, 1000);
 
     console.log("⚡ Veloce configurator initialized");
   }
@@ -282,76 +270,7 @@
     init();
   }
 
-  // Expose copyCommand to global scope for potential external use
+  // Expose functions to global scope
+  window.toggleInfo = toggleInfo;
   window.copyCommand = copyCommand;
 })();
-
-/**
- * Copy configuration for CLI use
- * Generates and copies the configuration summary for terminal use
- */
-function copyConfigForCLI() {
-  const projectName = sanitizeProjectName(
-    elements.projectName?.value || "my-app",
-  );
-  const pkgManager = elements.pkg?.value || "npm";
-  const typescript = elements.ts?.checked ? "Yes" : "No";
-  const tailwind = elements.tailwind?.checked ? "Yes" : "No";
-  const appRouter = elements.appRouter?.checked ? "Yes" : "No";
-  const turbopack = elements.turbo?.checked ? "Yes" : "No";
-  const compiler = elements.compiler?.checked ? "Yes" : "No";
-  const minimalTemplate = elements.empty?.checked ? "Yes" : "No";
-  const skipInstall = elements.skipInstall?.checked ? "Yes" : "No";
-  const srcDir = elements.srcDir?.checked ? "Yes" : "No";
-  const alias = elements.alias?.value || "@/*";
-
-  const configText = `
-Next.js Project Configuration
-━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Project Name: ${projectName}
-Package Manager: ${pkgManager}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Core Stack:
-  • TypeScript: ${typescript}
-  • App Router: ${appRouter}
-  • Tailwind CSS: ${tailwind}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Performance:
-  • Turbopack: ${turbopack}
-  • React Compiler: ${compiler}
-  • Minimal Template: ${minimalTemplate}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Settings:
-  • Import Alias: ${alias}
-  • Skip Auto Install: ${skipInstall}
-  • Source Directory: ${srcDir}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Visit https://nextjs.org/docs/getting-started/installation
-for official installation instructions.
-`.trim();
-
-  navigator.clipboard
-    .writeText(configText)
-    .then(() => {
-      const btn = document.getElementById("copyConfigBtn");
-      const originalHTML = btn.innerHTML;
-      btn.innerHTML = '<i class="ph ph-check-circle text-base"></i> Copied!';
-      btn.classList.add("copied");
-
-      setTimeout(() => {
-        btn.innerHTML = originalHTML;
-        btn.classList.remove("copied");
-      }, 2000);
-    })
-    .catch(() => {
-      const btn = document.getElementById("copyConfigBtn");
-      btn.innerHTML = '<i class="ph ph-warning-circle text-base"></i> Failed';
-      setTimeout(() => {
-        btn.innerHTML =
-          '<i class="ph ph-copy text-base"></i> Copy Configuration';
-      }, 2000);
-    });
-}
-
-// Expose to global scope
-window.copyConfigForCLI = copyConfigForCLI;

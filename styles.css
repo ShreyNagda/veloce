@@ -110,12 +110,10 @@ input:checked + .slider:before {
   transform: translateX(18px);
 }
 
-/* Hover effect for slider */
 .switch:hover .slider {
   opacity: 0.9;
 }
 
-/* Focus visible for accessibility */
 .switch input:focus-visible + .slider {
   box-shadow: 0 0 0 2px #1a1a1a;
 }
@@ -144,19 +142,14 @@ input:checked + .slider:before {
   border-right: 1px solid #e2e2e0;
 }
 
-/* Remove bottom border from last row */
 .grid-cell:nth-last-child(-n + 2) {
   border-bottom: none;
 }
 
-/* Hover effect on grid cells */
 .grid-cell:hover {
   background-color: #f5f5f3;
 }
 
-/* ============================================
-   Responsive Grid (Mobile)
-   ============================================ */
 @media (max-width: 640px) {
   .divided-grid {
     grid-template-columns: 1fr;
@@ -174,16 +167,6 @@ input:checked + .slider:before {
   .grid-cell:last-child {
     border-bottom: none;
   }
-}
-
-/* ============================================
-   Command Display Bar
-   ============================================ */
-.command-display {
-  background: #1e1e1e;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.03);
 }
 
 /* ============================================
@@ -205,21 +188,6 @@ input:checked + .slider:before {
 }
 
 /* ============================================
-   Safety Badge
-   ============================================ */
-.safety-badge {
-  background: #fff3cd;
-  border: 1px solid #ffeeba;
-  color: #856404;
-  font-size: 0.7rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-/* ============================================
    Icon Styles
    ============================================ */
 .ph {
@@ -237,39 +205,12 @@ label .ph {
 }
 
 /* ============================================
-   Button Animations
-   ============================================ */
-#copyBtn {
-  transition: all 0.2s ease;
-}
-
-#copyBtn:active {
-  transform: scale(0.97);
-}
-
-#copyBtn.copied {
-  background-color: #d1fae5;
-  color: #065f46;
-}
-
-#copyBtn.copied .ph {
-  color: #065f46;
-}
-
-/* ============================================
    Code Block Styles
    ============================================ */
 #output {
   font-family: "JetBrains Mono", "Geist Mono", monospace;
   word-break: break-all;
   line-height: 1.6;
-}
-
-/* ============================================
-   Utility Classes
-   ============================================ */
-.bg-line\/30 {
-  background-color: rgba(226, 226, 224, 0.3);
 }
 
 /* ============================================
@@ -283,17 +224,11 @@ html {
    Print styles
    ============================================ */
 @media print {
-  .command-display {
-    position: static;
-    box-shadow: none;
-  }
-
   body {
     padding-bottom: 2rem;
   }
 
   .switch input {
-    /* Show checkbox state in print */
     opacity: 1;
     position: static;
     width: auto;
@@ -329,12 +264,14 @@ html {
   }
 }
 
+/* ============================================
+   Footer Styles
+   ============================================ */
 footer {
-  background: #1A1A1A;
+  background: #1a1a1a;
   color: white;
 }
 
-/* Social Links */
 .social-link {
   width: 2.75rem;
   height: 2.75rem;
@@ -344,7 +281,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9CA3AF;
+  color: #9ca3af;
   transition: all 0.2s ease;
   text-decoration: none;
 }
@@ -361,32 +298,6 @@ footer {
   transform: translateY(0);
 }
 
-/* Copy Configuration Button */
-#copyConfigBtn {
-  position: relative;
-  overflow: hidden;
-}
-
-#copyConfigBtn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-#copyConfigBtn:hover::after {
-  left: 100%;
-}
-
-#copyConfigBtn.copied {
-  background-color: #10B981;
-}
-
-/* Footer Grid Responsive */
 @media (max-width: 768px) {
   footer .grid {
     grid-template-columns: 1fr;
@@ -396,4 +307,64 @@ footer {
     width: 2.5rem;
     height: 2.5rem;
   }
+}
+
+/* ============================================
+   Command Bar (Fixed Bottom)
+   ============================================ */
+.command-bar {
+  background: #1e1e1e;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.command-bar code {
+  font-family: "JetBrains Mono", "Geist Mono", monospace;
+  word-break: break-all;
+  line-height: 1.6;
+}
+
+#copyBtn {
+  transition: all 0.2s ease;
+  min-width: 160px;
+}
+
+#copyBtn:active {
+  transform: scale(0.97);
+}
+
+#copyBtn.copied {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+}
+
+#copyBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@keyframes copyPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.copied {
+  animation: copyPulse 0.3s ease;
+}
+
+/* Add bottom padding to main content to account for fixed command bar */
+main {
+  padding-bottom: 1rem;
 }
