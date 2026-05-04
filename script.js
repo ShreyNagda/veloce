@@ -24,7 +24,20 @@
     alias: document.getElementById("alias"),
     output: document.getElementById("output"),
     copyBtn: document.getElementById("copyBtn"),
+    // Tabs
+    tabs: document.querySelectorAll(".tab-btn"),
+    sections: document.querySelectorAll(".config-section"),
+    // Flutter elements
+    flutterProjectName: document.getElementById("flutterProjectName"),
+    flutterOrg: document.getElementById("flutterOrg"),
+    flutterAndroidLang: document.getElementById("flutterAndroidLang"),
+    flutterIosLang: document.getElementById("flutterIosLang"),
+    flutterOffline: document.getElementById("flutterOffline"),
+    flutterTemplate: document.getElementById("flutterTemplate"),
+    osTags: document.querySelectorAll(".os-tag"),
   };
+
+  let activeTab = "next";
 
   // ============================================
   // Package Manager Command Mapping
@@ -89,6 +102,17 @@
    * Build and update the command string based on current form values
    */
   function updateCommand() {
+    if (activeTab === "next") {
+      updateNextCommand();
+    } else {
+      updateFlutterCommand();
+    }
+  }
+
+  /**
+   * Build Next.js command
+   */
+  function updateNextCommand() {
     // Get sanitized values
     const projectName = sanitizeProjectName(elements.projectName.value);
     const createCommand = getCreateCommand(elements.pkg.value);
@@ -115,6 +139,46 @@
     flags.push("--yes");
 
     // Update the output display
+    elements.output.textContent = flags.join(" ");
+  }
+
+  /**
+   * Build Flutter command
+   */
+  function updateFlutterCommand() {
+    const projectName = (elements.flutterProjectName.value || "my_app")
+      .trim()
+      .replace(/\s+/g, "_")
+      .toLowerCase();
+    const org = elements.flutterOrg.value.trim() || "com.example";
+    const androidLang = elements.flutterAndroidLang.value;
+    const iosLang = elements.flutterIosLang.value;
+    const template = elements.flutterTemplate.value;
+    const isOffline = elements.flutterOffline.checked;
+
+    const selectedPlatforms = [];
+    elements.osTags.forEach((tag) => {
+      if (tag.classList.contains("selected")) {
+        selectedPlatforms.push(tag.dataset.os);
+      }
+    });
+
+    const flags = ["flutter create"];
+
+    flags.push(`--project-name ${projectName}`);
+    flags.push(`--org ${org}`);
+    flags.push(`-a ${androidLang}`);
+    flags.push(`-i ${iosLang}`);
+    flags.push(`--template ${template}`);
+
+    if (selectedPlatforms.length > 0) {
+      flags.push(`--platforms ${selectedPlatforms.join(",")}`);
+    }
+
+    if (isOffline) flags.push("--offline");
+
+    flags.push(".");
+
     elements.output.textContent = flags.join(" ");
   }
 
@@ -202,6 +266,53 @@
    * Attach event listeners to all form elements
    */
   function attachEventListeners() {
+    // Tab switching
+    elements.tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tab;
+        activeTab = target;
+
+        // Update UI
+        elements.tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        elements.sections.forEach((s) => {
+          s.classList.remove("active");
+          if (s.id === `${target}-config`) {
+            s.classList.add("active");
+          }
+        });
+
+        updateCommand();
+      });
+    });
+
+    // OS Tag toggling
+    elements.osTags.forEach((tag) => {
+      tag.addEventListener("click", () => {
+        tag.classList.toggle("selected");
+        updateCommand();
+      });
+    });
+
+    // Flutter input listeners
+    [
+      elements.flutterProjectName,
+      elements.flutterOrg,
+      elements.flutterAndroidLang,
+      elements.flutterIosLang,
+      elements.flutterTemplate,
+    ].forEach((el) => {
+      if (el) {
+        el.addEventListener("input", updateCommand);
+        el.addEventListener("change", updateCommand);
+      }
+    });
+
+    if (elements.flutterOffline) {
+      elements.flutterOffline.addEventListener("change", updateCommand);
+    }
+
     // Input and select elements
     const inputElements = [elements.projectName, elements.pkg, elements.alias];
 

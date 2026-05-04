@@ -158,11 +158,10 @@
         <p
           class="text-soft font-medium text-xs md:text-sm uppercase tracking-[0.35em] mb-2"
         >
-          Next.js CLI Forge
+          CLI Forge
         </p>
         <p class="text-xs text-soft max-w-2xl mx-auto leading-relaxed">
-          Configure your Next.js project and generate the command to get started
-          instantly.
+          Generate production-ready commands for your next project instantly.
         </p>
       </div>
 
@@ -177,21 +176,24 @@
               📚 How to Use This Tool
             </h3>
             <p class="text-xs text-blue-700 leading-relaxed">
-              Configure your Next.js project options below. The generated
-              command will appear at the bottom. Copy and run it in your
-              terminal to create your project.
+              Choose between <strong>Next.js</strong> or <strong>Flutter</strong> using the tabs below.
+              Configure your project options, and the generated command will appear at the bottom.
+              Copy and run it in your terminal to create your project instantly.
               <br /><br />
-              <strong>Always review commands before running them.</strong> Refer
-              to the
+              <strong>Always review commands before running them.</strong> Refer to the
               <a
-                href="https://nextjs.org/docs/getting-started/installation"
+                href="https://nextjs.org/docs"
                 class="underline hover:text-blue-900 font-medium"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                official Next.js documentation
-              </a>
-              for more details.
+              >official Next.js</a> or
+              <a
+                href="https://docs.flutter.dev"
+                class="underline hover:text-blue-900 font-medium"
+                target="_blank"
+                rel="noopener noreferrer"
+              >official Flutter</a>
+              documentation for more details.
             </p>
           </div>
         </div>
@@ -204,8 +206,19 @@
       class="w-full max-w-5xl px-4 md:px-6 flex-1"
       role="main"
     >
-      <!-- Configuration Grid -->
-      <div class="divided-grid shadow-sm mb-12">
+      <!-- Tabs -->
+      <div class="tabs-container">
+        <button class="tab-btn active" data-tab="next">
+          <i class="ph ph-browsers"></i> Next.js
+        </button>
+        <button class="tab-btn" data-tab="flutter">
+          <i class="ph ph-device-mobile"></i> Flutter
+        </button>
+      </div>
+
+      <!-- Next.js Configuration Section -->
+      <section id="next-config" class="config-section active">
+        <div class="divided-grid shadow-sm mb-12">
         <!-- 01 Identity -->
         <div class="grid-cell">
           <h2 class="option-label mb-6 uppercase flex items-center gap-2">
@@ -661,7 +674,155 @@
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Flutter Configuration Section -->
+      <section id="flutter-config" class="config-section">
+        <div class="divided-grid shadow-sm mb-12">
+          <!-- 01 Identity -->
+          <div class="grid-cell">
+            <h2 class="option-label mb-6 uppercase flex items-center gap-2">
+              <span class="step-number">01</span>
+              <i class="ph ph-fingerprint text-base"></i>
+              Project Identity
+            </h2>
+            <div class="space-y-6">
+              <div>
+                <label for="flutterProjectName" class="field-label">
+                  <i class="ph ph-folder-notch"></i> Project Name
+                </label>
+                <input
+                  type="text"
+                  id="flutterProjectName"
+                  value="my_flutter_app"
+                  class="field-input"
+                  placeholder="e.g., fitness_tracker"
+                />
+                <p class="option-desc">
+                  <i class="ph ph-info text-xs"></i>
+                  Must be lowercase with underscores.
+                </p>
+              </div>
+              <div>
+                <label for="flutterOrg" class="field-label">
+                  <i class="ph ph-buildings"></i> Organization ID
+                </label>
+                <input
+                  type="text"
+                  id="flutterOrg"
+                  value="com.example"
+                  class="field-input"
+                  placeholder="e.g., com.mynamespace"
+                />
+                <p class="option-desc">
+                  <i class="ph ph-info text-xs"></i>
+                  The organization responsible for your app.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 Platforms -->
+          <div class="grid-cell">
+            <h2 class="option-label mb-6 uppercase flex items-center gap-2">
+              <span class="step-number">02</span>
+              <i class="ph ph-devices text-base"></i>
+              Target Platforms
+            </h2>
+            <p class="option-desc mb-4">
+              Select the operating systems your app will support.
+            </p>
+            <div class="os-tags-grid" id="os-tags">
+              <div class="os-tag selected" data-os="android">
+                <i class="ph ph-android-logo"></i> Android
+              </div>
+              <div class="os-tag selected" data-os="ios">
+                <i class="ph ph-apple-logo"></i> iOS
+              </div>
+              <div class="os-tag selected" data-os="web">
+                <i class="ph ph-globe"></i> Web
+              </div>
+              <div class="os-tag" data-os="windows">
+                <i class="ph ph-microsoft-windows-logo"></i> Windows
+              </div>
+              <div class="os-tag" data-os="macos">
+                <i class="ph ph-desktop"></i> macOS
+              </div>
+              <div class="os-tag" data-os="linux">
+                <i class="ph ph-linux-logo"></i> Linux
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 Language -->
+          <div class="grid-cell">
+            <h2 class="option-label mb-6 uppercase flex items-center gap-2">
+              <span class="step-number">03</span>
+              <i class="ph ph-translate text-base"></i>
+              Native Languages
+            </h2>
+            <div class="space-y-6">
+              <div>
+                <label for="flutterAndroidLang" class="field-label">
+                  Android Language
+                </label>
+                <select id="flutterAndroidLang" class="field-input">
+                  <option value="kotlin">Kotlin (Recommended)</option>
+                  <option value="java">Java</option>
+                </select>
+              </div>
+              <div>
+                <label for="flutterIosLang" class="field-label">
+                  iOS Language
+                </label>
+                <select id="flutterIosLang" class="field-input">
+                  <option value="swift">Swift (Recommended)</option>
+                  <option value="objc">Objective-C</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- 04 Advanced -->
+          <div class="grid-cell">
+            <h2 class="option-label mb-6 uppercase flex items-center gap-2">
+              <span class="step-number">04</span>
+              <i class="ph ph-gear-six text-base"></i>
+              Advanced
+            </h2>
+            <div class="space-y-5">
+              <!-- Null Safety -->
+              <div class="config-option">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <p class="config-title">
+                      <i class="ph ph-shield-check text-base"></i> Pub Offline
+                    </p>
+                    <p class="option-desc">Run pub get in offline mode.</p>
+                  </div>
+                  <label class="switch mt-0.5">
+                    <input type="checkbox" id="flutterOffline" />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Template -->
+              <div>
+                <label for="flutterTemplate" class="field-label">
+                  Project Template
+                </label>
+                <select id="flutterTemplate" class="field-input">
+                  <option value="app">App (Standard)</option>
+                  <option value="package">Package</option>
+                  <option value="plugin">Plugin</option>
+                  <option value="skeleton">Skeleton (List/Detail)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Command Output Bar -->
@@ -717,8 +878,8 @@
               </h3>
             </div>
             <p class="text-gray-400 text-sm leading-relaxed mb-4">
-              A fast and intuitive Next.js project configurator. Generate
-              create-next-app commands with your preferred stack options.
+              A fast and intuitive project configurator for Next.js and Flutter. Generate
+              CLI commands with your preferred stack options instantly.
             </p>
             <p class="text-gray-500 text-xs">
               Built with ❤️ for the developer community. Always free and open
@@ -772,6 +933,26 @@
                   class="text-gray-400 hover:text-white text-sm transition-colors flex items-center gap-2"
                 >
                   <i class="ph ph-code text-base"></i> TypeScript
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://docs.flutter.dev"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-gray-400 hover:text-white text-sm transition-colors flex items-center gap-2"
+                >
+                  <i class="ph ph-device-mobile text-base"></i> Flutter Docs
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://dart.dev"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-gray-400 hover:text-white text-sm transition-colors flex items-center gap-2"
+                >
+                  <i class="ph ph-brackets-angle text-base"></i> Dart Docs
                 </a>
               </li>
             </ul>
@@ -853,7 +1034,7 @@
             An independent educational resource.
           </p>
           <p class="text-xs text-gray-500">
-            Not affiliated with Vercel, Next.js, or any mentioned technologies.
+            Not affiliated with Vercel, Google, Next.js, Flutter, or any mentioned technologies.
           </p>
         </div>
       </div>
